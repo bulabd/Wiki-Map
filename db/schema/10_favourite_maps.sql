@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS favoutite_maps CASCADE;
-CREATE table favoutite_maps (
+DROP TABLE IF EXISTS favourite_maps CASCADE;
+CREATE table favourite_maps (
   id  SERIAL PRIMARY KEY NOT NULL,
   owner_id INTEGER REFERENCES users2(id) ON DELETE CASCADE,
   client_id INTEGER REFERENCES users2(id) ON DELETE CASCADE,
