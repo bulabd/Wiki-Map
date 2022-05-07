@@ -6,4 +6,4 @@ CREATE table maps (
   initial_lat FLOAT,
   initial_long FLOAT,
   description TEXT
-)
+);
