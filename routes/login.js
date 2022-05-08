@@ -21,7 +21,8 @@ module.exports = (db) => {
       const users = data.rows;
       users.forEach(user => {
         if (user.email === req.body.email && user.password === req.body.password) {
-          res.redirect(`/users_maps/${user.id}`);
+          req.session.user_id = user.id;
+          res.redirect('/user_maps');
         }
       });
     })

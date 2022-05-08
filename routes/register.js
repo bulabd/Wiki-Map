@@ -19,7 +19,8 @@ module.exports = (db) => {
         let query2 = `INSERT INTO users2 (name, email, password) VALUES ($1,$2,$3) RETURNING *`;
         db.query(query2, values2)
         .then(data2 => {
-          res.redirect(`/users_maps/${data2.rows[0].id}`);
+          req.session.user_id = data2.rows[0].id;
+          res.redirect(`/user_maps/${data2.rows[0].id}`);
         })
       } else {
         res.send('Error email already taken');

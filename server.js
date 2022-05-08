@@ -12,6 +12,13 @@ const morgan = require("morgan");
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 
+// cookie session
+const cookieSession = require('cookie-session');
+app.use(cookieSession({
+  name: 'session',
+  keys: ['Hello there!']
+}));
+
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
@@ -44,6 +51,7 @@ const widgetsRoutes = require("./routes/widgets");
 
 const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
+const userMapsRoutes = require("./routes/user_maps_id");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -52,63 +60,11 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use("/login", loginRoutes(db));
 app.use("/register", registerRoutes(db));
+app.use("/user_maps", userMapsRoutes(db));
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-
-// app.get("/register", (req, res) => {
-//   res.render("register");
-// });
-
-// app.post("/register", (req, res) => {
-//   let values = [req.body.email, req.body.password];
-//   let query = `SELECT * FROM users2 WHERE email = $1 AND password = $2`;
-//   let result;
-//   db.query(query, values)
-//     .then(data => {
-//     result = data.rows;
-//     console.log(data);
-//     console.log({result});
-//     if (result.length === 0) {
-//       let values2 = [req.body.name, req.body.email, req.body.password];
-//       let query2 = `INSERT INTO users2 (name, email, password) VALUES ($1,$2,$3) RETURNING *`;
-//       db.query(query2, values2)
-//       .then(data2 => {
-//         console.log(data2.rows);
-//         res.redirect(`/users_maps/${data2.rows[0].id}`);
-//       })
-//     }
-//   })
-// });
-
-// app.get("/login", (req, res) => {
-//   res.render("login");
-//   let query = `SELECT * FROM users2`;
-//   console.log(query);
-//   db.query(query)
-//   .then(data => {
-//     const users = data.rows;
-//     console.log(users);
-//   })
-// });
-
-// app.post("/login", (req, res) => {
-//   let query = `SELECT * FROM users2`;
-//   console.log(query);
-//   db.query(query)
-//   .then(data => {
-//     const users = data.rows;
-//     users.forEach(user => {
-//       if (user.email === req.body.email && user.password === req.body.password) {
-//         res.redirect(`/users_maps/${user.id}`);
-//       }
-//     });
-//   })
-// });
-
-
-
-
 
 app.get("/", (req, res) => {
   res.render("index");
