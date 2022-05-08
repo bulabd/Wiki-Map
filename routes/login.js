@@ -10,7 +10,7 @@ module.exports = (db) => {
     const templateVars = {
       // user:  ID of user using query
     };
-    res.render('login_ejs');
+    res.render('login.ejs', templateVars);
   });
 
   router.post("/", (req, res) => {

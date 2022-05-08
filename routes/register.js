@@ -30,6 +30,7 @@ router.post("/", (req, res) => {
    users[userId] = user
    const ID = userId
   req.session.user_id = ID
-  res.redirect("/urls")
+  res.redirect("/user_maps/:id")
   })
+  return router;
 }
