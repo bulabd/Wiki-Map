@@ -1,36 +1,31 @@
 const express = require('express');
+const { reset } = require('nodemon');
 const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    // const userId = req.session.user_id
-    // if (userId) {
-    // return res.redirect("/user_maps/:id")
-    // }
+    res.render("register");
+  });
 
-  // const templateVars =  { "sql": "querry" };
-    res.render('register.ejs'); // , templateVars
-  })
+  router.post("/", (req, res) => {
+    let values = [req.body.email, req.body.password];
+    let query = `SELECT * FROM users2 WHERE email = $1 AND password = $2`;
+    let result;
+    db.query(query, values)
+      .then(data => {
+      result = data.rows;
+      if (result.length === 0) {
+        let values2 = [req.body.name, req.body.email, req.body.password];
+        let query2 = `INSERT INTO users2 (name, email, password) VALUES ($1,$2,$3) RETURNING *`;
+        db.query(query2, values2)
+        .then(data2 => {
+          res.redirect(`/users_maps/${data2.rows[0].id}`);
+        })
+      } else {
+        res.send('Error email already taken');
+      }
+    })
+  });
 
-
-
-
-  // router.post("/", (req, res) => {
-  //   const mail = req.body.email
-  //   const pass = req.body.password
-  //   if (!mail || !pass) {
-  //     return res.send(400)
-  //   }
-  //   // const userId = generateRandomString()
-  //   // const user = {id: userId, email: mail, password:  bcrypt.hashSync(pss, salt)}
-  //   const findEmail = findUserEmail("sql")
-  //   if ("sql") {
-  //     return  res.send(400)
-  //   }
-  //   users[userId] = user
-  //   const ID = userId
-  //   req.session.user_id = ID
-  //   res.redirect("/urls")
-  // })
   return router;
 }
