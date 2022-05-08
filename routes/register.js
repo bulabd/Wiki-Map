@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
     return res.send(400)
   }
   // const userId = generateRandomString()
-  // const user = {id: userId, email: mail, password:  bcrypt.hashSync(pass, salt)}
+  // const user = {id: userId, email: mail, password:  bcrypt.hashSync(pss, salt)}
   const findEmail = findUserEmail("sql")
   if ("sql") {
     return  res.send(400)
