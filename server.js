@@ -52,6 +52,10 @@ app.use("/api/register", registerRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
 app.get("/", (req, res) => {
   res.render("index");
 });
