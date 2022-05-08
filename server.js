@@ -56,47 +56,30 @@ app.use("/register", registerRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-app.post("/", (req, res) => {
-  let values = [req.body.email, req.body.password]
-  let query = `SELECT * FROM users2 WHERE email = $1 AND password = $2`;
-  console.log(query);
-  db.query(query, values)
-  .then(data => {
-    (data.rows).forEach(user => {
-      if (values[0] === user.email) {
-        return res.send('Email already taken')
-      } else {
-       let values2 = [req.body.name, req.body.email, req.body.password]
-       let querry2 = `INSERT INTO users2 (name, email, password) VALUES ($1,$2,$3) RETURNING *`
-       db.query(querry2, values2)
-       .then(data2 => {
-        return res.redirect(`/users_maps/${data2.id}`)
-      })
-      }
-    })
-  })
-});
-
-// router.post("/", (req, res) => {
-//   let query = `SELECT * FROM users2`;
-//   console.log(query);
-//   db.query(query)
-//   .then(data => {
-//     const users = data.rows;
-//     users.forEach(user => {
-//       if (user.email === req.body.email && user.password === req.body.password) {
-//         res.redirect(`/users_maps/${user.id}`);
-//       }
-//     });
-//   })
+// app.get("/register", (req, res) => {
+//   res.render("register");
 // });
 
-// return router;
-// };
+// app.post("/register", (req, res) => {
+//   let values = [req.body.email, req.body.password];
+//   let query = `SELECT * FROM users2 WHERE email = $1 AND password = $2`;
+//   let result;
+//   db.query(query, values)
+//     .then(data => {
+//     result = data.rows;
+//     console.log(data);
+//     console.log({result});
+//     if (result.length === 0) {
+//       let values2 = [req.body.name, req.body.email, req.body.password];
+//       let query2 = `INSERT INTO users2 (name, email, password) VALUES ($1,$2,$3) RETURNING *`;
+//       db.query(query2, values2)
+//       .then(data2 => {
+//         console.log(data2.rows);
+//         res.redirect(`/users_maps/${data2.rows[0].id}`);
+//       })
+//     }
+//   })
+// });
 
 // app.get("/login", (req, res) => {
 //   res.render("login");
