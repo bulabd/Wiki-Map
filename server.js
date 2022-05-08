@@ -60,25 +60,39 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.post("/", (req, res) => {
+app.post("/register", (req, res) => {
+  let flag = false;
   let values = [req.body.email, req.body.password]
+
   let query = `SELECT * FROM users2 WHERE email = $1 AND password = $2`;
-  console.log(query);
+
   db.query(query, values)
   .then(data => {
+    console.log("RD",data);
     (data.rows).forEach(user => {
+
       if (values[0] === user.email) {
-        return res.send('Email already taken')
-      } else {
-       let values2 = [req.body.name, req.body.email, req.body.password]
-       let querry2 = `INSERT INTO users2 (name, email, password) VALUES ($1,$2,$3) RETURNING *`
-       db.query(querry2, values2)
-       .then(data2 => {
-        return res.redirect(`/users_maps/${data2.id}`)
-      })
+        flag =true;
+
       }
-    })
-  })
+
+    });
+
+    //After the for loop,
+    if(flag) {
+      return res.send('Email already taken')
+    } else {
+      let values2 = [req.body.name, req.body.email, req.body.password]
+      console.log("PRINT", values2);
+      let querry2 = `INSERT INTO users2 (name, email, password) VALUES ($1,$2,$3) RETURNING *`
+      db.query(querry2, values2)
+      .then((data2) => {
+        // console.log("RD",data2);
+       return res.redirect(`/users_maps/${data2.rows[0].id}`)
+     })
+    }
+  }); //then promise
+
 });
 
 // router.post("/", (req, res) => {
