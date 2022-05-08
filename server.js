@@ -70,6 +70,16 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/map", (req, res) => {
+  const testMap = {id: 'testId', owner_id: 'owner_id', title: 'my special map', initial_lat: 43.6487,
+  isFavourite: false, initial_long: 79.38544, description: 'toronto yay'}
+  const templateVars = {
+    map: testMap
+  };
+  res.render("mapView", templateVars);
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
