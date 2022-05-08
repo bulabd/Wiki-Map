@@ -8,6 +8,10 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 
+// bodyparser
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
@@ -46,8 +50,8 @@ const registerRoutes = require("./routes/register");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
-app.use("/api/login", loginRoutes(db));
-app.use("/api/register", registerRoutes(db));
+app.use("/login", loginRoutes(db));
+app.use("/register", registerRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
@@ -56,9 +60,30 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+// app.get("/login", (req, res) => {
+//   res.render("login");
+//   let query = `SELECT * FROM users2`;
+//   console.log(query);
+//   db.query(query)
+//   .then(data => {
+//     const users = data.rows;
+//     console.log(users);
+//   })
+// });
+
+// app.post("/login", (req, res) => {
+//   let query = `SELECT * FROM users2`;
+//   console.log(query);
+//   db.query(query)
+//   .then(data => {
+//     const users = data.rows;
+//     users.forEach(user => {
+//       if (user.email === req.body.email && user.password === req.body.password) {
+//         res.redirect(`/users_maps/${user.id}`);
+//       }
+//     });
+//   })
+// });
 
 
 
