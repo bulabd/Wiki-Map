@@ -15,7 +15,7 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const email = req.body.email;
-    // const foundUser = findUserByEmail(email, users);
+    // const foundUser = findUserByEmail(email, u_sers);
     if (foundUser) {
       if (foundUser.password) {
         req.session.user_id = foundUser.id;
