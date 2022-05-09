@@ -60,7 +60,15 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use("/login", loginRoutes(db));
 app.use("/register", registerRoutes(db));
+
 app.use("/user_maps", userMapsRoutes(db));
+
+// /maps list of all maps
+// /map/:id -> gets the data
+// /map/:id/view -> shows one map
+// /map/:id/edit -> edits map
+// /user/maps -> maps the user created!
+// /user/ -> user profile
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -70,14 +78,44 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/map", (req, res) => {
-  const testMap = {id: 'testId', owner_id: 'owner_id', title: 'my special map', initial_lat: 43.6487,
-  isFavourite: false, initial_long: 79.38544, description: 'toronto yay'}
+const mapsData = [
+  {id: 'testId', owner_id: 'owner_id', title: 'Coldfoot, Alaska', initial_lat: 67.252174,
+  isFavourite: false, initial_long: -150.174713, description: 'Is there apple pie'},
+  {id: 'testId2', owner_id: 'owner_id', title: 'Map', initial_lat: 43.6487,
+  isFavourite: false, initial_long: 79.38544, description: 'Where am I???'},
+  {
+    id: 'testId1',
+    owner_id: 'owner_id',
+    title: 'Super awesome map',
+    initial_lat: 43.6487,
+    initial_long: -79.38544,
+    isFavourite: false,
+    description: 'Toronto !!'
+  }
+]
+
+app.get("/map/:id/view", (req, res) => {
+  const id = req.originalUrl.split('/')[2];
+  const map = getMap(id);
   const templateVars = {
-    map: testMap
+    map
   };
   res.render("mapView", templateVars);
 });
+
+app.get('/map/:id', (req, res) => {
+  // getting ID from url
+  const id = req.originalUrl.split('/')[2];
+
+  const map = getMap(id);
+  // sending map data to client
+  res.send({map})
+});
+
+function getMap(id)  {
+  // finding map from mapData -> this needs to be updated to search in DB
+ return mapsData.find(map => map.id === id);
+}
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

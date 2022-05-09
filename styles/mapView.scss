@@ -1,12 +1,57 @@
 .columnContainer {
   display: flex;
   flex-direction: column;
+  width: 80%;
 
   .rowContainer {
     flex-direction: row;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    i {
+      font-size: 1.8em;
+    }
+  }
+
+  .mapContainer {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .mapHover:hover {
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    }
   }
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  margin-top: 80px;
+  header {
+    width: 100%;
+    background-color: burlywood;
+
+    height: 80px;
+    padding: 1em;
+    position: fixed;
+    top: 0;
+    nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+  button {
+    border: 0;
+  }
+  #editbutton {
+ align-self: flex-start;
+    margin-top: 1em;
+  }
+}

@@ -6,31 +6,50 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/b383617d0a.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="/styles/mapView.css" type="text/css" />
     <title>Map View</title>
   </head>
   <body>
+    <header>
+      <nav class="navBar">
+        <h1>WikiMaps</h1>
+        <a href="/login">Login</a>
+      </nav>
+    </header>
     <% if (map) {%>
     <div class="columnContainer">
     <div id="title&isfave" class="rowContainer">
     <h2><%= map.title %></h2>
-    <i class="<%= map.isFavourite ? 'fa-solid fa-star' : 'fa-regular fa-star' %>"></i>
-    </div>
-    <p><%= map.description %></p>
-    <article>
-      <div id="googleMap" style="width:100%;height:400px;"></div>
+    <!-- Favourite item below, need to implement it into a button that changes isFavourite value in db -->
+    <button type="button" class="bg-transparent"><i class="<%= map.isFavourite ? 'fa-solid fa-star' : 'fa-regular fa-star' %>"></i>
+    </div></button>
+    <article class="mapContainer">
+      <p><%= map.description %></p>
+      <div id="googleMap" style="width:100%;height:400px;" class="mapHover"></div>
       <script>
         function myMap() {
+            const url = window.location.pathname;
+            const mapId = url.split('/')[2]
+            $.get(`/map/${mapId}`, function (data, status) {
 
-          var myMap = '<%= map.description %>'
-        var mapProp= {
-          center:new google.maps.LatLng(51.508742,-0.120850),
-          zoom:5,
+              // status check if theres anything but a 200 theres an error
+              // if theres no map, theres no map in our  "db" that matches the id in the url
+            if(!data.map) {
+              // uh oh error hehe show smt here
+              return;
+            }
+              const { initial_lat, initial_long } = data.map;
+              var mapProp= {
+          center:new google.maps.LatLng(initial_lat, initial_long),
+          zoom:9,
         };
         var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            });
         }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDefdAke6ccRvSJ6kOWOMs6C3josatbsPo&callback=myMap"></script>
+        <button type="button" class="btn btn-secondary" id="editbutton">Edit Map</button>
     </article>
     </div>
     <% } %>
