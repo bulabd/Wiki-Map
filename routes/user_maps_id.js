@@ -7,11 +7,12 @@ module.exports = (db) => {
     const templateVars = {
       id: req.session.user_id
     };
-    let query = `SELECT * FROM users2 WHERE id = ${templateVars.id}`;
-    db.query(query)
-      .then(data => {
-        res.render("user_maps", templateVars);
-        return data.rows[0];
+    let query1 = `SELECT * FROM maps WHERE id = ${templateVars.id}`;
+    db.query(query1)
+      .then(data1 => {
+        templateVars.maps = data1.rows;
+        console.log(templateVars.maps);
+        res.render("mapList2", templateVars);
       });
   });
 

@@ -20,7 +20,7 @@ module.exports = (db) => {
         db.query(query2, values2)
         .then(data2 => {
           req.session.user_id = data2.rows[0].id;
-          res.redirect(`/user_maps/${data2.rows[0].id}`);
+          res.redirect('/maps');
         })
       } else {
         res.send('Error email already taken');

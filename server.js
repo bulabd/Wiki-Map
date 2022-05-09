@@ -60,7 +60,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use("/login", loginRoutes(db));
 app.use("/register", registerRoutes(db));
-app.use("/user_maps", userMapsRoutes(db));
+app.use("/maps", userMapsRoutes(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!

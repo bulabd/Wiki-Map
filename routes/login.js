@@ -22,7 +22,7 @@ module.exports = (db) => {
       users.forEach(user => {
         if (user.email === req.body.email && user.password === req.body.password) {
           req.session.user_id = user.id;
-          res.redirect('/user_maps');
+          res.redirect('/maps');
         }
       });
     })
