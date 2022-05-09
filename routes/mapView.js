@@ -20,8 +20,8 @@ module.exports = (db) => {
         let query2 = `SELECT * FROM markers WHERE map_id = ${req.params.id}`;
         db.query(query2)
         .then(data2 => {
-          templateVars.markers = {};
-          for (const items of data2)
+          templateVars.markers = JSON.stringify(data2.rows);
+          console.log(templateVars.markers);
           res.render("mapView", templateVars);
         })
       });
