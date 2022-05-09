@@ -137,6 +137,8 @@ app.get('/map/:id', (req, res) => {
   res.send({map})
 });
 
+//---------------"Helper" functions to go below. To be moved to a seperate helper.js file after refactoring.----------------------------------------------------------
+
 function getMap(id)  {
   // finding map from mapData -> this needs to be updated to search in DB
  return mapsData.find(map => map.id === id);
