@@ -7,11 +7,7 @@ module.exports = (db) => {
     const templateVars = {
       id: req.session.user_id
     };
-    if (templateVars.id != req.params.id) {
-      res.redirect('/login')
-    }
     let query1 = `SELECT * FROM maps WHERE id = ${req.params.id}`;
-    // console.log(req.params, 'reqparams');
     db.query(query1)
       .then(data => {
         templateVars.map = {};
@@ -19,7 +15,10 @@ module.exports = (db) => {
         templateVars.map.initial_lat = data.rows[0].initial_lat;
         templateVars.map.initial_long = data.rows[0].initial_long;
         templateVars.map.description = data.rows[0].description;
-        // console.log(templateVars);
+        templateVars.button = false;
+        if (data.rows[0].owner_id === templateVars.id) {
+          templateVars.button = true;
+        }
         let query2 = `SELECT * FROM markers WHERE map_id = ${req.params.id}`;
         db.query(query2)
         .then(data2 => {
