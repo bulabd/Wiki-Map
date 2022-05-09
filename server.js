@@ -62,6 +62,13 @@ app.use("/login", loginRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/maps", userMapsRoutes(db));
 
+// /maps list of all maps
+// /map/:id -> gets the data
+// /map/:id/view -> shows one map
+// /map/:id/edit -> edits map
+// /user/maps -> maps the user created!
+// /user/ -> user profile
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
@@ -70,6 +77,83 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+const mapsData = [
+  {id: 'testId', owner_id: 'owner_id', title: 'Coldfoot, Alaska', initial_lat: 67.252174,
+  isFavourite: false, initial_long: -150.174713, description: 'Is there apple pie'},
+  {id: 'testId2', owner_id: 'owner_id', title: 'Map', initial_lat: 43.6487,
+  isFavourite: false, initial_long: 79.38544, description: 'Where am I???'},
+  {
+    id: 'testId1',
+    owner_id: 'owner_id',
+    title: 'Super awesome map',
+    initial_lat: 43.6487,
+    initial_long: -79.38544,
+    isFavourite: false,
+    description: 'Toronto !!'
+  }
+]
+
+// app.get("/maps", (req, res) => {
+//   const templateVars = {
+//     maps: mapsData
+//   };
+//   console.log(templateVars);
+//   res.render("mapList", templateVars);
+// });
+
+app.get("/map/:id/view", (req, res) => {
+  const id = req.originalUrl.split('/')[2];
+  const map = getMap(id);
+  const templateVars = {
+    map
+  };
+  res.render("mapView", templateVars);
+});
+
+app.get("/map/:id/edit", (req, res) => {
+  const id = req.originalUrl.split('/')[2];
+  const map = getMap(id);
+  const templateVars = {
+    map
+  };
+  res.render("mapEdit", templateVars);
+});
+
+
+app.post('/map/:id/update', (req, res) => {
+  const id = req.originalUrl.split('/')[2];
+  const { body } = req;
+  updateMap(id, body);
+  res.redirect('back');
+});
+
+app.get('/map/:id', (req, res) => {
+  // getting ID from url
+  const id = req.originalUrl.split('/')[2];
+
+  const map = getMap(id);
+  // sending map data to client
+  res.send({map})
+});
+
+//---------------"Helper" functions to go below. To be moved to a seperate helper.js file after refactoring.----------------------------------------------------------
+
+function getMap(id)  {
+  // finding map from mapData -> this needs to be updated to search in DB
+ return mapsData.find(map => map.id === id);
+}
+
+function updateMap(id, updatedMap) {
+  // updateing map in mapData -> this needs to be updated to update in DB
+  const originalMap = getMap(id);
+  const originalMapIndex = mapsData.findIndex(map => map.id === id);
+  if(updatedMap.isFavourite) {
+    updatedMap.isFavourite = updatedMap.isFavourite === 'false' ? false : true;
+  }
+  mapsData[originalMapIndex] = {...originalMap, ...updatedMap};
+}
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+

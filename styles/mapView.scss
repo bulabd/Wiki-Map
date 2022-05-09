@@ -1,0 +1,38 @@
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+
+  .rowContainer {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+      display: none;
+    }
+  }
+
+  .mapContainer {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .mapItem:hover {
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        border:rgba(0, 0, 0, 0.38)
+    }
+  }
+}
+
+
+  button {
+    border: 0;
+  }
+  #editbutton {
+ align-self: flex-start;
+    margin-top: 1em;
+  }
+
