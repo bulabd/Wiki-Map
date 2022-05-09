@@ -52,6 +52,7 @@ const widgetsRoutes = require("./routes/widgets");
 const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
 const userMapsRoutes = require("./routes/user_maps_id");
+const mapViewRoutes = require("./routes/mapView");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -61,6 +62,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/maps", userMapsRoutes(db));
+app.use("/maps/:id", mapViewRoutes(db));
 
 // /maps list of all maps
 // /map/:id -> gets the data
@@ -101,14 +103,14 @@ const mapsData = [
 //   res.render("mapList", templateVars);
 // });
 
-app.get("/map/:id/view", (req, res) => {
-  const id = req.originalUrl.split('/')[2];
-  const map = getMap(id);
-  const templateVars = {
-    map
-  };
-  res.render("mapView", templateVars);
-});
+// app.get("/map/:id/view", (req, res) => {
+//   const id = req.originalUrl.split('/')[2];
+//   const map = getMap(id);
+//   const templateVars = {
+//     map
+//   };
+//   res.render("mapView", templateVars);
+// });
 
 app.get("/map/:id/edit", (req, res) => {
   const id = req.originalUrl.split('/')[2];
