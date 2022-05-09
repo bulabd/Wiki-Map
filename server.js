@@ -94,6 +94,14 @@ const mapsData = [
   }
 ]
 
+app.get("/maps", (req, res) => {
+  const templateVars = {
+    maps: mapsData
+  };
+  console.log(templateVars);
+  res.render("mapList", templateVars);
+});
+
 app.get("/map/:id/view", (req, res) => {
   const id = req.originalUrl.split('/')[2];
   const map = getMap(id);
@@ -101,6 +109,23 @@ app.get("/map/:id/view", (req, res) => {
     map
   };
   res.render("mapView", templateVars);
+});
+
+app.get("/map/:id/edit", (req, res) => {
+  const id = req.originalUrl.split('/')[2];
+  const map = getMap(id);
+  const templateVars = {
+    map
+  };
+  res.render("mapEdit", templateVars);
+});
+
+
+app.post('/map/:id/update', (req, res) => {
+  const id = req.originalUrl.split('/')[2];
+  const { body } = req;
+  updateMap(id, body);
+  res.redirect('back');
 });
 
 app.get('/map/:id', (req, res) => {
@@ -115,6 +140,16 @@ app.get('/map/:id', (req, res) => {
 function getMap(id)  {
   // finding map from mapData -> this needs to be updated to search in DB
  return mapsData.find(map => map.id === id);
+}
+
+function updateMap(id, updatedMap) {
+  // updateing map in mapData -> this needs to be updated to update in DB
+  const originalMap = getMap(id);
+  const originalMapIndex = mapsData.findIndex(map => map.id === id);
+  if(updatedMap.isFavourite) {
+    updatedMap.isFavourite = updatedMap.isFavourite === 'false' ? false : true;
+  }
+  mapsData[originalMapIndex] = {...originalMap, ...updatedMap};
 }
 
 app.listen(PORT, () => {

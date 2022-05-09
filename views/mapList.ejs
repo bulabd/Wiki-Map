@@ -19,5 +19,15 @@
     <div>
       <h2>Here are the maps you have contributed to:</h2>
     </div>
+    <div>
+      <h2>All maps:</h2>
+      <div>
+        <% for(const map in maps) { %>
+          <div>
+            <h1><%= maps[map].title %></h1>
+          </div>
+        <% } %>
+      </div>
+    </div>
   </body>
 </html>
