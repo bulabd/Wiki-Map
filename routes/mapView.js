@@ -7,6 +7,9 @@ module.exports = (db) => {
     const templateVars = {
       id: req.session.user_id
     };
+    if (templateVars.id != req.params.id) {
+      res.redirect('/login')
+    }
     let query1 = `SELECT * FROM maps WHERE id = ${req.params.id}`;
     // console.log(req.params, 'reqparams');
     db.query(query1)
@@ -21,6 +24,7 @@ module.exports = (db) => {
         db.query(query2)
         .then(data2 => {
           templateVars.markers = JSON.stringify(data2.rows);
+          console.log(JSON.stringify(data.rows))
           console.log(templateVars.markers);
           res.render("mapView", templateVars);
         })
