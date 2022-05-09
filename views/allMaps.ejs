@@ -1,5 +1,3 @@
-<!-- //receives an array of  available maps -->
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,20 +17,13 @@
           <i class="fa-solid fa-signs-post"></i>
         </div>
         <div>
-          <a href="/all_maps">View All Maps</a>
+          <a href="/maps">My Maps</a>
           <!-- Change to logout route below(as we will be logged in atthis point)-->
           <a href="/login">Login</a>
         </div>
       </nav>
     </header>
     <h2>Hey Username!</h2>
-    <div>
-      <h2>Here are your favourite maps:</h2>
-    </div>
-    <div>
-      <h2>Here are the maps you have contributed to:</h2>
-    </div>
-    <div>
       <h2>All maps:</h2>
       <div>
         <% for(const map in maps) { %>
