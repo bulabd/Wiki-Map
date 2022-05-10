@@ -5,12 +5,13 @@ body {
   justify-content: center;
   padding: 2em;
   margin-top: 100px;
-  background-color: #F9F5FF;
+  background-color: #F7F7FF;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
   font-family: 'Raleway', sans-serif;
+  color: #313638;
   header {
     width: 100%;
-    background-color: burlywood;
+    background-color: #E4B363;
     height: 100px;
     padding: 1em;
     position: fixed;
@@ -21,7 +22,6 @@ body {
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      border-bottom: 15px cornsilk;
       .WikiMapsLogo {
         display: flex;
         flex-direction: row;
@@ -35,14 +35,14 @@ body {
     }
   }
   footer {
-    background-color: burlywood;
+    background-color: #EF6461;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
   }
   .link-dark {
-    color:black;
+    color: #313638;
   }
 }
 
