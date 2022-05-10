@@ -5,8 +5,8 @@ body {
   justify-content: center;
   padding: 2em;
   margin-top: 100px;
-  background-color: #F7F7FF;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+  background-color: #F7F7FF;
   font-family: 'Raleway', sans-serif;
   color: #313638;
   header {
@@ -58,6 +58,12 @@ body {
   }
   .link-dark {
     color: #313638;
+  }
+  a:hover {
+    background-color: #4A8FE7;
+  }
+  a:active {
+    background-color: #F7F7FF;
   }
 }
 
