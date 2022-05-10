@@ -53,7 +53,8 @@ const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
 const userMapsRoutes = require("./routes/user_maps_id");
 const mapViewRoutes = require("./routes/mapView");
-const showAllMapsRoutes = require("./routes/showAllMaps")
+const showAllMapsRoutes = require("./routes/showAllMaps");
+// const logoutRoutes = require("./routes/logout")
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -65,6 +66,8 @@ app.use("/register", registerRoutes(db));
 app.use("/maps", userMapsRoutes(db));
 app.use("/maps/:id", mapViewRoutes(db));
 app.use("/all_maps", showAllMapsRoutes(db));
+// app.use("logout", logoutRoutes(db));
+
 
 // /maps list of all maps
 // /map/:id -> gets the data
@@ -80,6 +83,11 @@ app.use("/all_maps", showAllMapsRoutes(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.get('/logout', (req,res) => {
+  req.session.user_id = null
+  res.redirect('/login')
+})
 
 const mapsData = [
   {id: 'testId', owner_id: 'owner_id', title: 'Coldfoot, Alaska', initial_lat: 67.252174,
