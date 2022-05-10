@@ -1,5 +1,6 @@
 // load .env data into process.env
 require("dotenv").config();
+const request = require('request-promise-native');
 
 // Web server config
 const PORT = process.env.PORT || 8080;
@@ -55,6 +56,7 @@ const userMapsRoutes = require("./routes/user_maps_id");
 const mapViewRoutes = require("./routes/mapView");
 const editMapsRoutes = require("./routes/editMap");
 const showAllMapsRoutes = require("./routes/showAllMaps");
+const createMapsRoutes = require("./routes/createMaps");
 // const logoutRoutes = require("./routes/logout")
 
 // Mount all resource routes
@@ -65,6 +67,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/maps", userMapsRoutes(db));
+app.use("/create", createMapsRoutes(db));
 app.use("/maps/:id/edit", editMapsRoutes(db));
 app.use("/maps/:id", mapViewRoutes(db));
 app.use("/all_maps", showAllMapsRoutes(db));
