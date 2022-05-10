@@ -1,0 +1,160 @@
+<!-- //displays a singular map based on ID from routes -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b383617d0a.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/styles/mapView.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/commonStyles.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <title>Map View</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navBar">
+        <div class="WikiMapsLogo">
+          <h1>WikiMaps</h1>
+          <i class="fa-solid fa-signs-post"></i>
+        </div>
+        <div>
+          <a href="/maps" class="link-dark">>View All Maps</a>
+          <form method="GET" action="/logout">
+          <a href="/login" class="link-dark"></a>><button class="btn btn-outline">Logout</button></a>
+          </form>
+        </div>
+      </nav>
+    </header>
+    <div style="padding-bottom: 300px;">
+      <% if (map.title) {%>
+        <div class="columnContainer">
+          <div id="title&isfave" class="rowContainer">
+            <h2><%= map.title %></h2>
+            <!-- Favourite item below, need to implement it into a button that changes isFavourite value in db -->
+            <form method="post" action="update">
+              <input type="checkbox" name="isFavourite" value="<%= Boolean(!map.isFavourite).toString() %>" />
+              <button type="submit" class="bg-transparent"><i class="<%= map.isFavourite ? 'fa-solid fa-star' : 'fa-regular fa-star' %>"></i>
+              </button>
+            </form>
+          </div>
+          <article class="mapContainer">
+            <p><%= map.description %></p>
+            <div id="googleMap" style="width:100%;height:400px;" class="mapItem" data-initial_lat="<%= map.initial_lat %>" data-initial_long="<%= map.initial_long %>" data-markers="<%= markers %>"></div>
+            <script>
+              function myMap() {
+
+                const mapElement = document.getElementById("googleMap");
+                const map1 = new google.maps.Map(mapElement, {
+                  zoom: 10,
+                  center: { lat: Number(mapElement.getAttribute('data-initial_lat')), lng: Number(mapElement.getAttribute('data-initial_long')) }
+                });
+
+                let markersArr = JSON.parse(mapElement.getAttribute('data-markers'));
+                console.log(markersArr);
+                for (let marker of markersArr) {
+
+                  let marker_varriable = new google.maps.Marker({
+                    position: { lat: Number(marker.latitude), lng: Number(marker.longitude)},
+                    map: map1,
+                    title: marker.title
+                  });
+
+                  let contentString =
+                  `<img  src="${marker.image_url}" alt="Image of the marker" width="100vh" height="70vh">` +
+                  `<h4>${marker.title}</h4>` +
+                  `<p>${marker.description}</p>`;
+                  const infoWindow = new google.maps.InfoWindow({
+                    content: contentString
+                  });
+                  marker_varriable.addListener("click", () => {
+                    infoWindow.open({
+                      anchor: marker_varriable,
+                      map: map1,
+                      shouldFocus: false
+                    });
+                  });
+                }
+
+              }
+              </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDefdAke6ccRvSJ6kOWOMs6C3josatbsPo&callback=myMap"></script>
+      </div>
+
+      <form method="POST" action="/maps/<%= map_id %>/edit?param=addMarker">
+        <h4>Add a new marker:</h4>
+        <label for="title">Title: </label>
+        <input type="text" name="title" placeholder="Title">
+        <label for="title">Description: </label>
+        <input type="text" name="description" placeholder="Description">
+        <label for="image_url">Image URL: </label>
+        <input type="text" name="image_url" placeholder="URL">
+        <label for="latitude">Latitude: </label>
+        <input type="number" step="0.000000000000001" name="latitude" placeholder="Latitude">
+        <label for="longitude">Longitude: </label>
+        <input type="number" step="0.000000000000001" name="longitude" placeholder="Longitude">
+        <label for="type">Type of marker: </label>
+        <input type="text" name="type" placeholder="Type">
+        <button type="submit">Submit</button>
+      </form>
+
+      <form method="POST" action="/maps/<%= map_id %>/edit?param=updateMarker">
+        <h4>Update marker:</h4>
+        <label for="title">Title of Marker: </label>
+        <input type="text" name="title" placeholder="Title">
+        <label for="title">New Title: </label>
+        <input type="text" name="new_title" placeholder="New Title">
+        <label for="title">Description: </label>
+        <input type="text" name="description" placeholder="Description">
+        <label for="image_url">Image URL: </label>
+        <input type="text" name="image_url" placeholder="URL">
+        <label for="latitude">Latitude: </label>
+        <input type="number" step="0.000000000000001" name="latitude" placeholder="Latitude">
+        <label for="longitude">Longitude: </label>
+        <input type="number" step="0.000000000000001" name="longitude" placeholder="Longitude">
+        <label for="type">Type of marker: </label>
+        <input type="text" name="type" placeholder="Type">
+        <button type="submit">Submit</button>
+      </form>
+
+      <form method="POST" action="/maps/<%= map_id %>/edit?param=deleteMarker">
+        <label for="title">Title of marker to delete: </label>
+        <input type="text" name="id" placeholder="Marker Title">
+        <button type="submit">Delete Marker</button>
+      </form>
+
+      <form method="POST" action="/maps/<%= map_id %>/edit?param=deleteMap">
+        <button type="submit">Delete Map</button>
+      </form>
+
+    </article>
+    <% } %>
+  </div>
+    <footer style="margin-top: 20vh;">
+      <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
+        <div class="col-12">
+          <div class="row row-2">
+            <div class="col-sm-3 text-md-center"><h5><span> <i class="fa-solid fa-signs-post" aria-hidden="true"></i></span><b>  WikiMaps</b></h5></div>
+            <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;Baila</li><li><i class="fa-brands fa-github"></i><span class="Creators"><a href="https://github.com/Baila3" target="_blank" class="link-dark">Baila3</a></span></li></ul></div>
+            <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;Bulat</li><li><i class="fa-brands fa-github"></i><span class="Creators"><a href="https://github.com/bulabd" target="_blank" class="link-dark">bulabd</a></span></li></ul></div>
+            <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;George</li><li><i class="fa-brands fa-github"></i></i><span class="Creators"><a href="https://github.com/George-was-here" target="_blank" class="link-dark">George-was-here</a></span></li></ul></div>
+               </div>
+          </div>
+      </div>
+      <div class="row justify-content-center mt-0 pt-0 row-1 mb-0  px-sm-3 px-2">
+           <div class="col-12">
+               <div class="row my-4 row-1 no-gutters">
+                   <div class="col-sm-3 col-auto text-center"><small>April 2022 Lighthouse Labs</small></div><div class="col-md-3 col-auto "></div><div class="col-md-3 col-auto"></div>
+                   <div class="col  my-auto text-md-left  text-right "> <small> hello@mail.com 🥔<span><img src="https://i.imgur.com/TtB6MDc.png" class="img-fluid "  width="25"></span> <span><img src="https://i.imgur.com/N90KDYM.png" class="img-fluid "  width="25"></span></small>  </div>
+               </div>
+           </div>
+       </div>
+   </footer>
+  </body>
+</html>
+
+
+    <!-- AIzaSyDefdAke6ccRvSJ6kOWOMs6C3josatbsPo -->

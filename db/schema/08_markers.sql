@@ -5,7 +5,7 @@ CREATE TABLE markers (
   owner_id INTEGER REFERENCES users2(id),
   title VARCHAR(255) NOT NUll,
   description TEXT NOT NULL,
-  image_url VARCHAR(255),
+  image_url TEXT,
   latitude FLOAT NOT NULL,
   longitude FLOAT NOT NULL,
   type VARCHAR(255) NOT NULL
