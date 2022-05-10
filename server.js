@@ -53,6 +53,7 @@ const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
 const userMapsRoutes = require("./routes/user_maps_id");
 const mapViewRoutes = require("./routes/mapView");
+const editMapsRoutes = require("./routes/editMap");
 const showAllMapsRoutes = require("./routes/showAllMaps");
 // const logoutRoutes = require("./routes/logout")
 
@@ -64,6 +65,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/maps", userMapsRoutes(db));
+app.use("/maps/:id/edit", editMapsRoutes(db));
 app.use("/maps/:id", mapViewRoutes(db));
 app.use("/all_maps", showAllMapsRoutes(db));
 // app.use("logout", logoutRoutes(db));
