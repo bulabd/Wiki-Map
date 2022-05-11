@@ -117,3 +117,13 @@ main {
     background-color: #F7F7FF;
   }
 }
+
+.box {
+  // margin-left: 1rem;
+  // margin-bottom: 1rem;
+  &:focus {
+    border: 5px solid white;
+      background-color: #4A8FE7;;
+  }
+}
+
