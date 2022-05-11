@@ -140,3 +140,28 @@ main {
   }
 }
 
+.addmarkerform {
+  margin-top: 1em;
+  padding-bottom: .5em;
+  border-bottom: 2px #313638 solid;
+}
+
+.deletemap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.boxform {
+  display: flex;
+  flex-wrap: wrap;
+}
+.boxform>* {
+  flex: 1 1 40%;
+}
+
+#allmapslist {
+  color: #EF6461
+}
+
