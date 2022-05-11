@@ -14,6 +14,8 @@
           <i class="fa-solid fa-signs-post"></i>
         </div>
         <div class="navButtons">
+          <a href="/all_maps" class="link-dark">&#43;View All Maps</a>
+          <a href="/create" class="link-dark">&#43;Create Map</a>
           <a href="/maps" class="link-dark">&#43;My Maps</a>
           <form method="GET" action="/logout">
           <button class="btn btn-outline link-dark">&#43;Logout</button>
@@ -28,7 +30,7 @@
     <div id="title&isfave" class="rowContainer">
     <h2><%= map.title %></h2>
     <!-- Favourite item below, need to implement it into a button that changes isFavourite value in db -->
-    <form method="post" action=<%= `${map.id}/favourite` %>>
+    <form method="post" action='/maps/<%= map.id %>'>
       <input type="checkbox" name="isFavourite" value="<%= Boolean(!map.isFavourite).toString() %>" />
       <button type="submit" class="bg-transparent"><i class="<%= map.isFavourite ? 'fa-solid fa-star' : 'fa-regular fa-star' %>"></i>
     </button>

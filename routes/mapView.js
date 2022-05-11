@@ -21,48 +21,40 @@ module.exports = (db) => {
         if (data.rows[0].owner_id === templateVars.id) {
           templateVars.button = true;
         }
-        //Here to render "star" logo appropriately if map is favourited when page is rendering
-       db.query(`SELECT * from favourite_maps where map_id = ${templateVars.map.id} and client_id = ${templateVars.id}`).then(data => {
-         if(data.rows[0]) {
-           templateVars.map.isFavourite = true;
-         } else {
-          templateVars.map.isFavourite = false;
-         }
-       });
         let query2 = `SELECT * FROM markers WHERE map_id = ${req.params.id}`;
         db.query(query2)
         .then(data2 => {
           templateVars.markers = JSON.stringify(data2.rows);
-          res.render("mapView", templateVars);
+          //Here to render "star" logo appropriately if map is favourited when page is rendering
+          db.query(`SELECT * from favourite_maps where map_id = ${templateVars.map.id} and client_id = ${templateVars.id}`).then(data => {
+            if(data.rows[0]) {
+              templateVars.map.isFavourite = true;
+            } else {
+              templateVars.map.isFavourite = false;
+            }
+            res.render("mapView", templateVars);
+          });
         })
       });
   });
 
-  // router.post('/update', (req, res) => {
-  //   const id = req.originalUrl.split('/')[2];
-  //   const user_id = req.session.user_id
-  //   const { body } = req;
-  //   console.log({id, body});
-  //   updateMap(id, body);
-  //   res.redirect('back');
-  // });
-
-  router.post('/favourite', (req, res) => {
+  router.post('/', (req, res) => {
     const id = req.originalUrl.split('/')[2];
-    const user_id = req.session.user_id
+    const user_id = req.session.user_id;
 
     // is this map favourited by the user already
-    db.query(`SELECT * from favourite_maps where map_id = ${id} and client_id = ${user_id}`).then(data => {
+    db.query(`SELECT * FROM favourite_maps where map_id = ${id} and client_id = ${user_id};`).then(data => {
       // if it is, we're going to delete that record (so we can unfavourite it)
       if(data.rows[0]) {
-        db.query(`DELETE FROM favourite_maps where map_id = ${id} and client_id = ${user_id}`);
+        db.query(`DELETE FROM favourite_maps where map_id = ${id} and client_id = ${user_id};`);
       } else {
         // otherwise, we're going to add a new record to favourite it. First we fetch all the map data
-        db.query(`SELECT * FROM maps where id =${id}`).then(data => {
+        db.query(`SELECT * FROM maps where id =${id};`).then(data => {
           const originalMap =  data.rows[0];
+          console.log(originalMap);
           // once we get our map data, we can create a new favourite record using that data
           if(originalMap) {
-            db.query(`INSERT INTO favourite_maps values (DEFAULT, ${originalMap.owner_id}, ${user_id}, ${id})`);
+            db.query(`INSERT INTO favourite_maps (owner_id, client_id, map_id) VALUES (${originalMap.owner_id}, ${user_id}, ${id});`);
           }
         })
       }

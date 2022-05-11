@@ -27,12 +27,19 @@
     <h2>Hey <%= name%>!</h2>
     <div>
       <h2>Here are your favourite maps:</h2>
+      <div>
+        <% for(const map in favMaps) { %>
+          <div>
+            <a href="/maps/<%= favMaps[map].id %>" class="link-dark"><%= favMaps[map].title %></a>
+            <p><%= favMaps[map].description %></p>
+          </div>
+        <% } %>
+      </div>
+
+
     </div>
     <div>
-      <h2>Here are the maps you have contributed to:</h2>
-    </div>
-    <div>
-      <h2>All maps:</h2>
+      <h2>All Maps That Youv'e Created:</h2>
       <div>
         <% for(const map in maps) { %>
           <div>
