@@ -15,10 +15,8 @@ module.exports = (db) => {
     db.query(query1)
       .then(data1 => {
         templateVars.maps = data1.rows;
-        console.log(templateVars.maps);
         res.render("mapList", templateVars);
       });
   });
-
   return router;
 }
