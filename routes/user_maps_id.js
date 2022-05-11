@@ -7,6 +7,10 @@ module.exports = (db) => {
     const templateVars = {
       id: req.session.user_id
     };
+    if (!templateVars.id) {
+      res.redirect("/login");
+      return;
+    }
     let query1 = `SELECT * FROM maps WHERE id = ${templateVars.id}`;
     db.query(query1)
       .then(data1 => {

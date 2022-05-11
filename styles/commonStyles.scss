@@ -3,8 +3,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2em;
-  margin-top: 100px;
   background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
   background-color: #F7F7FF;
   font-family: 'Raleway', sans-serif;
@@ -51,9 +49,6 @@ body {
   }
   footer {
     background-color: #EF6461;
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
   }
   .link-dark {
@@ -67,3 +62,10 @@ body {
   }
 }
 
+main {
+  min-height: 100vh;
+  padding: 2em;
+  width: 100%;
+  background-color: #cfd1b0a6;
+  padding-top: 110px;
+}

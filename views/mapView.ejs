@@ -2,16 +2,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/b383617d0a.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="/styles/mapView.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/commonStyles.css" type="text/css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <%- include('partials/_head') %>
+    <!-- <link rel="stylesheet" href="/styles/mapView.css" type="text/css" /> -->
     <title>Map View</title>
   </head>
   <body>
@@ -29,6 +21,7 @@
         </div>
       </nav>
     </header>
+    <main>
     <% if (map.title) {%>
     <div class="columnContainer">
     <div id="title&isfave" class="rowContainer">
@@ -87,26 +80,8 @@
       </div>
     </article>
     <% } %>
-    <footer >
-      <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
-          <div class="col-12">
-               <div class="row row-2">
-                   <div class="col-sm-3 text-md-center"><h5><span> <i class="fa-solid fa-signs-post" aria-hidden="true"></i></span><b>  WikiMaps</b></h5></div>
-                   <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;Baila</li><li><i class="fa-brands fa-github"></i><span class="Creators"><a href="https://github.com/Baila3" target="_blank" class="link-dark">Baila3</a></span></li></ul></div>
-                   <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;Bulat</li><li><i class="fa-brands fa-github"></i><span class="Creators"><a href="https://github.com/bulabd" target="_blank" class="link-dark">bulabd</a></span></li></ul></div>
-                   <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;George</li><li><i class="fa-brands fa-github"></i></i><span class="Creators"><a href="https://github.com/George-was-here" target="_blank" class="link-dark">George-was-here</a></span></li></ul></div>
-               </div>
-          </div>
-      </div>
-      <div class="row justify-content-center mt-0 pt-0 row-1 mb-0  px-sm-3 px-2">
-           <div class="col-12">
-               <div class="row my-4 row-1 no-gutters">
-                   <div class="col-sm-3 col-auto text-center"><small>April 2022 Lighthouse Labs</small></div><div class="col-md-3 col-auto "></div><div class="col-md-3 col-auto"></div>
-                   <div class="col  my-auto text-md-left  text-right "> <small> hello@mail.com 🥔<span><img src="https://i.imgur.com/TtB6MDc.png" class="img-fluid "  width="25"></span> <span><img src="https://i.imgur.com/N90KDYM.png" class="img-fluid "  width="25"></span></small>  </div>
-               </div>
-           </div>
-       </div>
-   </footer>
+  </main>
+    <%- include('partials/_footer') %>
   </body>
 </html>
 
