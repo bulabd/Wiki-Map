@@ -129,3 +129,14 @@ main {
   }
 }
 
+.mapdescription {
+  p {
+    border: 1px #313638 solid;
+    border-radius: 10px;
+    padding: .25em;
+    background-color: #E4B363;
+    color:#313638;
+    font-style: italic;
+  }
+}
+

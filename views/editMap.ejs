@@ -28,7 +28,7 @@
         <% if (map.title) {%>
           <div class="columnContainer">
             <div id="title&isfave" class="rowContainer">
-              <h2><%= map.title %></h2>
+              <h2><b><%= map.title %></b></h2>
               <!-- Favourite item below, need to implement it into a button that changes isFavourite value in db -->
               <form method="post" action="update">
                 <input type="checkbox" name="isFavourite" value="<%= Boolean(!map.isFavourite).toString() %>" />
@@ -37,7 +37,9 @@
               </form>
             </div>
             <article class="mapContainer">
-              <p><%= map.description %></p>
+              <div class="mapdescription">
+                <p><%= map.description %></p>
+              </div>
               <div id="googleMap" style="width:100%;height:400px;" class="mapItem" data-initial_lat="<%= map.initial_lat %>" data-initial_long="<%= map.initial_long %>" data-markers="<%= markers %>"></div>
               <script>
                 function myMap() {
