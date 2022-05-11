@@ -3,7 +3,7 @@
   <head>
   <%- include('partials/_head') %>
   <link rel="stylesheet" href="/styles/allMaps.css" type="text/css" />
-    <title>Map List</title>
+    <title>List of All Maps</title>
   </head>
   <body>
     <header>
@@ -14,7 +14,7 @@
         </div>
         <div class="navButtons">
           <a href="/create" class="link-dark">&#43;Create Map</a>
-          <a href="/maps" class="link-dark">&#43;My Maps</a>
+          <a href="/maps" class="link-dark">&#43;My Profile</a>
           <form method="GET" action="/logout">
             <button class="btn btn-outline link-dark">&#43;Logout</button>
           </form>
@@ -28,7 +28,7 @@
       <div>
         <% for(const map in maps) { %>
           <div>
-            <a href="/maps/<%= maps[map].id %>"><%= maps[map].title %></a>
+            <a href="/maps/<%= maps[map].id %>" class="link-dark"><i class="fa-solid fa-map-location-dot"></i><%= maps[map].title %></a>
             <p><%= maps[map].description %></p>
           </div>
         <% } %>

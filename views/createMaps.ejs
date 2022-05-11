@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="/styles/createMap.css" type="text/css" />
     <%- include('partials/_head') %>
-    <!-- <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/b383617d0a.js" crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href="/styles/mapView.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="/styles/commonStyles.css" type="text/css" /> -->
-    <link rel="stylesheet" href="/styles/createMap.scss" type="text/css" />
-    <title>Map List</title>
+    <!-- <link rel="stylesheet" href="/styles/mapView.css" type="text/css" /> -->
+    <title>Create Maps</title>
   </head>
   <body>
     <header>
@@ -18,14 +13,11 @@
           <h1>WikiMaps</h1>
           <i class="fa-solid fa-signs-post"></i>
         </div>
-<<<<<<< HEAD
          <div>
           <a href="/maps">My Maps</a>
-=======
         <div class="navButtons">
           <a href="/all_maps" class="link-dark">&#43;View All Maps</a>
-          <a href="/maps" class="link-dark">&#43;My Maps</a>
->>>>>>> 56a9ad28149eff7ba7c68cdad6629693f9287e50
+          <a href="/maps" class="link-dark">&#43;My Profile</a>
           <form method="GET" action="/logout">
             <button class="btn btn-outline link-dark">&#43;Logout</button>
           </form>
@@ -34,11 +26,11 @@
     </header>
       <main class="mainPage">
         <div class="contentbox">
-          <h2>Create A Map</h2>
+          <h2>Create-A-Map</h2>
            <form method="POST" action="/create" class="form-group">
-            <label for="title">Map Name: </label>
+            <label for="title">&#43;Map Name: </label>
             <input type="text" name="title" placeholder="Title" class="box">
-            <label for="title">Description: </label>
+            <label for="title">&#43;Description: </label>
             <input type="text" name="description" placeholder="Description" class="box">
             <button type="submit" class="redbuttons">&#43;Create</button>
            </form>
