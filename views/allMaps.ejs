@@ -13,6 +13,7 @@
           <i class="fa-solid fa-signs-post"></i>
         </div>
         <div class="navButtons">
+          <a href="/create" class="link-dark">&#43;Create Map</a>
           <a href="/maps" class="link-dark">&#43;My Maps</a>
           <form method="GET" action="/logout">
             <button class="btn btn-outline link-dark">&#43;Logout</button>
@@ -22,7 +23,7 @@
     </header>
     <main>
       <div class="contentbox">
-    <h2>Hey Username!</h2>
+    <h2>Hey <%= name %>!</h2>
       <h2>All maps:</h2>
       <div>
         <% for(const map in maps) { %>

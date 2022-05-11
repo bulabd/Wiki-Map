@@ -16,17 +16,15 @@
         </div>
         <div class="navButtons">
           <a href="/all_maps" class="link-dark">&#43;View All Maps</a>
-        <div>
-          <a href="/create">create</a>
+          <a href="/create" class="link-dark">&#43;Create Map</a>
           <form method="GET" action="/logout">
-           <button class="btn btn-outline link-dark">&#43;Logout</button>
+            <button class="btn btn-outline link-dark">&#43;Logout</button>
           </form>
-        </div>
       </nav>
     </header>
     <main>
       <div class="contentbox">
-    <h2>Hey Username!</h2>
+    <h2>Hey <%= name%>!</h2>
     <div>
       <h2>Here are your favourite maps:</h2>
     </div>

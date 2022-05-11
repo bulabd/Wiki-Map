@@ -54,6 +54,7 @@ body {
   footer {
     background-color: #EF6461;
     width: 100%;
+    border-top: 2px #313638 groove;
   }
   .link-dark {
     color: #313638;
@@ -76,15 +77,33 @@ main {
 }
 
 .contentbox {
-  border: 5px groove #4A8FE7;
+  // border: 5px groove #4A8FE7;
   padding: 2em;
   border-radius: 10px;
   background-color: #F7F7FF;
+  margin-top: 2.5em;
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-    border:rgba(0, 0, 0, 0.38)
+    // box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    // border:rgba(0, 0, 0, 0.38)
+    border: 3px #4A8FE7 solid;
+    // box-shadow: 3px 3px 3px #4A8FE7;
   }
+  // .createForm {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: space-between;
+  //   margin-top: 1.5em;
+  //   .box {
+  //     margin-left: 2rem;
+  //     margin-bottom: 1rem;
+  //     &:focus {
+  //       border: 5px solid white;
+  //         background-color: #4A8FE7;;
+  //     }
+  //   }
+  // }
 }
+
 
 .redbuttons {
     background-color: #EF6461;
