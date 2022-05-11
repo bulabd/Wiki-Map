@@ -3,7 +3,7 @@
 <html>
   <head>
     <%- include('partials/_head') %>
-    <!-- <link rel="stylesheet" href="/styles/mapView.css" type="text/css" /> -->
+    <link rel="stylesheet" href="/styles/mapView.css" type="text/css" />
     <title>Map View</title>
   </head>
   <body>
@@ -14,14 +14,15 @@
           <i class="fa-solid fa-signs-post"></i>
         </div>
         <div>
-          <a href="/maps" class="link-dark">>View All Maps</a>
+          <a href="/maps" class="link-dark">>&#43;View All Maps</a>
           <form method="GET" action="/logout">
-          <a href="/login" class="link-dark"></a>><button class="btn btn-outline">Logout</button></a>
+          <a href="/login" class="link-dark"></a>><button class="btn btn-outline">&#43;Logout</button></a>
           </form>
         </div>
       </nav>
     </header>
     <main>
+      <div class="contentbox">
     <% if (map.title) {%>
     <div class="columnContainer">
     <div id="title&isfave" class="rowContainer">
@@ -80,6 +81,7 @@
       </div>
     </article>
     <% } %>
+  </div>
   </main>
     <%- include('partials/_footer') %>
   </body>

@@ -14,25 +14,29 @@ body {
     padding: 1em;
     position: fixed;
     top: 0;
+    border-bottom: 2px groove #313638;
     nav {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      a {
+      .navButtons {
+        display: flex;
+        flex-direction: row;
+      }
+      a, .link-dark {
         background-color: #EF6461;
         color: #313638;
-        padding: 1em 1.5em;
+        padding: .5em .5em;
         border-radius: 5px;
         text-decoration: none;
-        text-transform: uppercase;
+        margin: .5em;
       }
-      a:hover {
+      a:hover, .link-dark:hover {
         background-color: #4A8FE7;
       }
-
-      a:active {
+      a:active, .link-dark:active {
         background-color: #F7F7FF;
       }
       .WikiMapsLogo {
@@ -54,6 +58,7 @@ body {
   .link-dark {
     color: #313638;
   }
+
   a:hover {
     background-color: #4A8FE7;
   }
@@ -63,9 +68,33 @@ body {
 }
 
 main {
-  min-height: 100vh;
+  min-height: 80vh;
   padding: 2em;
   width: 100%;
-  background-color: #cfd1b0a6;
+  background-color: #b3dee2a5;
   padding-top: 110px;
+}
+
+.contentbox {
+  border: 5px groove #4A8FE7;
+  padding: 2em;
+  border-radius: 10px;
+  background-color: #F7F7FF;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    border:rgba(0, 0, 0, 0.38)
+  }
+}
+
+.redbuttons {
+    background-color: #EF6461;
+    color: #313638;
+    padding: .2em .5em;
+    border-radius: 5px;
+  &:hover {
+    background-color: #4A8FE7;
+  }
+  &:active {
+    background-color: #F7F7FF;
+  }
 }
