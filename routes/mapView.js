@@ -13,6 +13,7 @@ module.exports = (db) => {
       .then(data => {
         templateVars.map = {};
         templateVars.map.id = data.rows[0].id
+        console.log("bob", templateVars.map.id)
         templateVars.map.title = data.rows[0].title;
         templateVars.map.initial_lat = data.rows[0].initial_lat;
         templateVars.map.initial_long = data.rows[0].initial_long;
@@ -51,7 +52,7 @@ module.exports = (db) => {
         // otherwise, we're going to add a new record to favourite it. First we fetch all the map data
         db.query(`SELECT * FROM maps where id =${id};`).then(data => {
           const originalMap =  data.rows[0];
-          console.log(originalMap);
+          // console.log("bob",originalMap);
           // once we get our map data, we can create a new favourite record using that data
           if(originalMap) {
             db.query(`INSERT INTO favourite_maps (owner_id, client_id, map_id) VALUES (${originalMap.owner_id}, ${user_id}, ${id});`);
