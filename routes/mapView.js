@@ -5,7 +5,8 @@ const router  = express.Router({ mergeParams: true });
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const templateVars = {
-      id: req.session.user_id
+      id: req.session.user_id,
+      map_id: req.params.id
     };
     let query1 = `SELECT * FROM maps WHERE id = ${req.params.id}`;
     db.query(query1)

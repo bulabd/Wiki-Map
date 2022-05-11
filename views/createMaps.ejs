@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b383617d0a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/mapView.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/commonStyles.css" type="text/css" />
+    <title>Map List</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navBar">
+        <div class="WikiMapsLogo">
+          <h1>WikiMaps</h1>
+          <i class="fa-solid fa-signs-post"></i>
+        </div>
+        <div>
+          <a href="/maps">My Maps</a>
+          <form method="GET" action="/logout">
+            <a href="/login"><button class="btn btn-outline">Logout</button></a>
+          </form>
+        </div>
+      </nav>
+    </header>
+      <h2>Create A Map</h2>
+       <form method="POST" action="/create">
+        <label for="title">Map Name: </label>
+        <input type="text" name="title" placeholder="Title">
+        <label for="title">Description: </label>
+        <input type="text" name="description" placeholder="Description">
+        <button type="submit">Submit</button>
+       </form>
+  </body>
+</html>
+

@@ -74,7 +74,7 @@
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDefdAke6ccRvSJ6kOWOMs6C3josatbsPo&callback=myMap"></script>
         <% if (button === true) {%>
-        <button type="button" class="btn btn-secondary" id="editbutton" onclick="location.href='edit'">Edit Map</button>
+          <a class="btn btn-secondary" href="/maps/<%= map_id %>/edit">Edit Map</a>
         <% } %>
       </div>
     </article>
