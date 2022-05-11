@@ -28,7 +28,7 @@
       <div>
         <% for(const map in maps) { %>
           <div>
-            <a href="/maps/<%= maps[map].id %>" class="link-dark"><i class="fa-solid fa-map-location-dot"></i><%= maps[map].title %></a>
+            <a href="/maps/<%= maps[map].id %>" class="link-dark" id="allmapslist"><i class="fa-solid fa-map-location-dot"></i><%= maps[map].title %></a>
             <p><%= maps[map].description %></p>
           </div>
         <% } %>

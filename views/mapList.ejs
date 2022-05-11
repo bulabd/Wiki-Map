@@ -4,7 +4,7 @@
 <html>
   <head>
     <%- include('partials/_head') %>
-    <!-- <link rel="stylesheet" href="/styles/mapView.css" type="text/css" /> -->
+    <link rel="stylesheet" href="/styles/mapList.css" type="text/css" />
     <title>Profile Page</title>
   </head>
   <body>
@@ -24,13 +24,13 @@
     </header>
     <main>
       <div class="contentbox">
-    <h2>User: <%= name%>!</h2>
+    <h2><%= name%>'s Maps</h2>
     <div>
       <h2>Here are your favourite maps:</h2>
       <div>
         <% for(const map in favMaps) { %>
           <div>
-            <a href="/maps/<%= favMaps[map].id %>" class="link-dark"><%= favMaps[map].title %></a>
+            <a href="/maps/<%= favMaps[map].id %>" class="link-dark" id="allmapslist"><i class="fa-solid fa-map-location-dot"></i> <%= favMaps[map].title %></a>
             <p><%= favMaps[map].description %></p>
           </div>
         <% } %>
@@ -43,7 +43,7 @@
       <div>
         <% for(const map in maps) { %>
           <div>
-            <a href="/maps/<%= maps[map].id %>" class="link-dark"><i class="fa-solid fa-map-location-dot"></i><%= maps[map].title %></a>
+            <a href="/maps/<%= maps[map].id %>" class="link-dark" id="allmapslist"><i class="fa-solid fa-map-location-dot"></i>  <%= maps[map].title %></a>
             <p><%= maps[map].description %></p>
           </div>
         <% } %>
