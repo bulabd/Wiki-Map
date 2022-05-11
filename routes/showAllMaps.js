@@ -8,11 +8,15 @@ module.exports = (db) => {
       id: req.session.user_id
     };
     let query1 = `SELECT * FROM maps`;
+    let query2 = `SELECT * FROM users2 WHERE id = ${templateVars.id}`;
     db.query(query1)
       .then(data1 => {
         templateVars.maps = data1.rows;
-        console.log(templateVars.maps);
-        res.render("allMaps", templateVars);
+        db.query(query2)
+          .then(data2 => {
+            templateVars.name = data2.rows[0].name;
+            res.render("allMaps", templateVars);
+          });
       });
   });
 
