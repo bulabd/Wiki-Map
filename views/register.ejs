@@ -2,17 +2,9 @@
 <html lang="en">
 
 <head>
-  <title>Register Page</title>
-
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <%- include('partials/_head') %>
   <link rel="stylesheet" href="/styles/register.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/commonStyles.css" type="text/css" />
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
-  <script src="https://kit.fontawesome.com/b383617d0a.js" crossorigin="anonymous"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+  <title>Register Page</title>
 </head>
 
 <body>
@@ -23,48 +15,31 @@
         <i class="fa-solid fa-signs-post"></i>
       </div>
       <div>
-        <a href="/login" class="link-dark">Login</a>
+        <a href="/login" class="link-dark">&#43;Login</a>
       </div>
     </nav>
   </header>
   <main class="mainPage">
-    <h3>Create Accout</h3>
+    <div class="contentbox">
+    <h3><b>Create Account</b></h3>
     <form class="ommitButton" method="POST" action="/register">
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">&#43;Email:</label>
         <input class="box" type="email" name="email" placeholder="Enter email">
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">&#43;Password:</label>
         <input class="box" type="password" name="password" placeholder="Password">
       </div>
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">&#43;Name:</label>
         <input class="box" type="text" name="name" placeholder="Name">
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" class="redbuttons">&#43;Submit</button>
     </form>
-  </main>
-  <footer >
-    <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
-        <div class="col-12">
-             <div class="row row-2">
-                 <div class="col-sm-3 text-md-center"><h5><span> <i class="fa-solid fa-signs-post" aria-hidden="true"></i></span><b>  WikiMaps</b></h5></div>
-                 <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;Baila</li><li><i class="fa-brands fa-github"></i><span class="Creators"><a href="https://github.com/Baila3" target="_blank" class="link-dark">Baila3</a></span></li></ul></div>
-                 <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;Bulat</li><li><i class="fa-brands fa-github"></i><span class="Creators"><a href="https://github.com/bulabd" target="_blank" class="link-dark">bulabd</a></span></li></ul></div>
-                 <div class="col-sm-3  my-sm-0 mt-5"><ul class="list-unstyled"><li class="mt-0">&#43;George</li><li><i class="fa-brands fa-github"></i></i><span class="Creators"><a href="https://github.com/George-was-here" target="_blank" class="link-dark">George-was-here</a></span></li></ul></div>
-             </div>
-        </div>
     </div>
-    <div class="row justify-content-center mt-0 pt-0 row-1 mb-0  px-sm-3 px-2">
-         <div class="col-12">
-             <div class="row my-4 row-1 no-gutters">
-                 <div class="col-sm-3 col-auto text-center"><small>April 2022 Lighthouse Labs</small></div><div class="col-md-3 col-auto "></div><div class="col-md-3 col-auto"></div>
-                 <div class="col  my-auto text-md-left  text-right "> <small> hello@mail.com 🥔<span><img src="https://i.imgur.com/TtB6MDc.png" class="img-fluid "  width="25"></span> <span><img src="https://i.imgur.com/N90KDYM.png" class="img-fluid "  width="25"></span></small>  </div>
-             </div>
-         </div>
-     </div>
- </footer>
+  </main>
+  <%- include('partials/_footer') %>
 </body>
 
 </html>

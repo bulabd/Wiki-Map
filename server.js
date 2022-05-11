@@ -137,13 +137,6 @@ app.get("/map/:id/edit", (req, res) => {
 });
 
 
-app.post('/map/:id/update', (req, res) => {
-  const id = req.originalUrl.split('/')[2];
-  const { body } = req;
-  updateMap(id, body);
-  res.redirect('back');
-});
-
 app.get('/map/:id', (req, res) => {
   // getting ID from url
   const id = req.originalUrl.split('/')[2];
@@ -158,16 +151,6 @@ app.get('/map/:id', (req, res) => {
 function getMap(id)  {
   // finding map from mapData -> this needs to be updated to search in DB
  return mapsData.find(map => map.id === id);
-}
-
-function updateMap(id, updatedMap) {
-  // updateing map in mapData -> this needs to be updated to update in DB
-  const originalMap = getMap(id);
-  const originalMapIndex = mapsData.findIndex(map => map.id === id);
-  if(updatedMap.isFavourite) {
-    updatedMap.isFavourite = updatedMap.isFavourite === 'false' ? false : true;
-  }
-  mapsData[originalMapIndex] = {...originalMap, ...updatedMap};
 }
 
 app.listen(PORT, () => {
