@@ -10,7 +10,7 @@ body {
   header {
     width: 100%;
     background-color: #E4B363;
-    height: 100px;
+    // height: 100px;
     padding: 1em;
     position: fixed;
     top: 0;
@@ -197,3 +197,18 @@ main {
   opacity: 1;
   visibility: visible;
 }
+
+
+@media only screen and (max-width: 638px) {
+  header {
+    height: 200px;
+    // width: 300px;
+    .navBar {
+     flex-direction: column;
+   }
+  }
+  main {
+    padding-top: 200px;
+  }
+}
+
