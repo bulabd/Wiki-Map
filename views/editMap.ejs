@@ -4,6 +4,8 @@
   <head>
     <%- include('partials/_head') %>
     <link rel="stylesheet" href="/styles/mapView.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/scripts/app.js"></script>
     <title>Edit Map</title>
   </head>
   <body>
@@ -155,9 +157,11 @@
           <button type="submit" class="redbuttons">&#43;Delete Marker!</button>
         </form>
 
+        <div>
         <form method="POST" action="/maps/<%= map_id %>/edit?param=deleteMap" class="deletemap">
-          <button type="submit" class="redbuttons">&#43;Delete Map!</button>
+          <button class="redbuttons" id="target">&#43;Delete Map!</button>
         </form>
+        </div>
 
       </article>
       <% } %>

@@ -90,15 +90,15 @@ app.get("/", (req, res) => {
 });
 
 app.get('/logout', (req,res) => {
-  req.session = null
-  res.redirect('/login')
-})
+  req.session = null;
+  res.redirect('/login');
+});
 
 const mapsData = [
   {id: 'testId', owner_id: 'owner_id', title: 'Coldfoot, Alaska', initial_lat: 67.252174,
-  isFavourite: false, initial_long: -150.174713, description: 'Is there apple pie'},
+    isFavourite: false, initial_long: -150.174713, description: 'Is there apple pie'},
   {id: 'testId2', owner_id: 'owner_id', title: 'Map', initial_lat: 43.6487,
-  isFavourite: false, initial_long: 79.38544, description: 'Where am I???'},
+    isFavourite: false, initial_long: 79.38544, description: 'Where am I???'},
   {
     id: 'testId1',
     owner_id: 'owner_id',
@@ -108,7 +108,7 @@ const mapsData = [
     isFavourite: false,
     description: 'Toronto !!'
   }
-]
+];
 
 // app.get("/maps", (req, res) => {
 //   const templateVars = {
@@ -143,14 +143,14 @@ app.get('/map/:id', (req, res) => {
 
   const map = getMap(id);
   // sending map data to client
-  res.send({map})
+  res.send({map});
 });
 
 //---------------"Helper" functions to go below. To be moved to a seperate helper.js file after refactoring.----------------------------------------------------------
 
 function getMap(id)  {
   // finding map from mapData -> this needs to be updated to search in DB
- return mapsData.find(map => map.id === id);
+  return mapsData.find(map => map.id === id);
 }
 
 app.listen(PORT, () => {
