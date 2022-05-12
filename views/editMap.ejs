@@ -30,12 +30,6 @@
           <div class="columnContainer">
             <div id="title&isfave" class="rowContainer">
               <h2><b><%= map.title %></b></h2>
-              <!-- Favourite item below, need to implement it into a button that changes isFavourite value in db -->
-              <form method="post" action="update">
-                <input type="checkbox" name="isFavourite" value="<%= Boolean(!map.isFavourite).toString() %>" />
-                <button type="submit" class="bg-transparent"><i class="<%= map.isFavourite ? 'fa-solid fa-star' : 'fa-regular fa-star' %>"></i>
-                </button>
-              </form>
             </div>
             <article class="mapContainer">
               <div class="mapdescription">
