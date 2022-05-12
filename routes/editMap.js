@@ -58,8 +58,12 @@ module.exports = (db) => {
       }
 
       if (req.body.image_url) {
-        query += `image_url = '${req.body.image_url}', `;
-        console.log('QUERY ------>', query);
+        if (req.body.image_url === "") {
+          query += `image_url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiFdEPVQn9Hf_UkVTOco2_3_jHpfiR_jVYbA&usqp=CAU', `;
+        } else {
+          query += `image_url = '${req.body.image_url}', `;
+          console.log('QUERY ------>', query);
+        }
       }
 
       if (req.body.latitude) {

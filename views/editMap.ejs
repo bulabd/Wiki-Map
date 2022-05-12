@@ -59,11 +59,17 @@
                       map: map1,
                       title: marker.title
                     });
-
-                    let contentString =
-                    `<img  src="${marker.image_url}" alt="Image of the marker" width="100vh" height="70vh">` +
-                    `<h4>${marker.title}</h4>` +
-                    `<p>${marker.description}</p>`;
+                    let contentString;
+                    if (marker.image_url) {
+                      contentString =
+                      `<img  src="${marker.image_url}" alt="Image of the marker" width="100vh" height="70vh">` +
+                      `<h4>${marker.title}</h4>` +
+                      `<p>${marker.description}</p>`;
+                    } else {
+                      contentString =
+                      `<h4>${marker.title}</h4>` +
+                      `<p>${marker.description}</p>`;
+                    }
                     const infoWindow = new google.maps.InfoWindow({
                       content: contentString
                     });
@@ -156,9 +162,13 @@
         </form>
 
         <form method="POST" action="/maps/<%= map_id %>/edit?param=deleteMap" class="deletemap">
-          <button type="submit" class="redbuttons">&#43;Delete Map!</button>
+          <button onclick="myFunction()" type="submit" class="redbuttons">&#43;Delete Map!</button>
         </form>
-
+           <script>
+             function myFunction() {
+               confirm("Do you want to delete the map!");
+            }
+           </script>
       </article>
       <% } %>
     </div>
