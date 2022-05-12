@@ -24,13 +24,19 @@
     <main>
       <div class="contentbox">
     <h2>Hey <%= name %>!</h2>
-      <h2>All maps:</h2>
+      <h2>All Saved Maps That Have Been Created Are Listed Below:</h2>
       <div>
         <% for(const map in maps) { %>
+        <article>
           <div>
-            <a href="/maps/<%= maps[map].id %>" class="link-dark" id="allmapslist"><i class="fa-solid fa-map-location-dot"></i> <%= maps[map].title %></a>
+          <div class="masonry-container">
+            <div class="masonry-brick">
+            <a href="/maps/<%= maps[map].id %>" class="link-dark hovertext" data-hover="Open map" id="allmapslist"><i class="fa-solid fa-map-location-dot"></i><%= maps[map].title %></a>
             <p><%= maps[map].description %></p>
+            </div>
+            </div>
           </div>
+        </article>
         <% } %>
       </div>
     </div>
