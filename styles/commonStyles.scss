@@ -10,7 +10,6 @@ body {
   header {
     width: 100%;
     background-color: #E4B363;
-    // height: 100px;
     padding: 1em;
     position: fixed;
     top: 0;
@@ -78,31 +77,13 @@ main {
 }
 
 .contentbox {
-  // border: 5px groove #4A8FE7;
   padding: 2em;
   border-radius: 10px;
   background-color: #F7F7FF;
   margin-top: 2.5em;
   &:hover {
-    // box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-    // border:rgba(0, 0, 0, 0.38)
     border: 3px #4A8FE7 solid;
-    // box-shadow: 3px 3px 3px #4A8FE7;
   }
-  // .createForm {
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: space-between;
-  //   margin-top: 1.5em;
-  //   .box {
-  //     margin-left: 2rem;
-  //     margin-bottom: 1rem;
-  //     &:focus {
-  //       border: 5px solid white;
-  //         background-color: #4A8FE7;;
-  //     }
-  //   }
-  // }
 }
 
 
@@ -143,7 +124,6 @@ main {
 .addmarkerform {
   margin-top: 1em;
   padding-bottom: .5em;
-  // border-bottom: 2px #313638 solid;
   box-shadow:
     inset 0 -0.075em white,
     inset 0 -0.1em #EF6461,
@@ -198,11 +178,20 @@ main {
   visibility: visible;
 }
 
+#logoMarker {
+  font-size: 24px;
+  padding: 0px;
+}
+
+#logoMarkerFooter {
+  font-size: 14px;
+  padding: 0;
+}
+
 
 @media only screen and (max-width: 638px) {
   header {
     height: 200px;
-    // width: 300px;
     .navBar {
      flex-direction: column;
    }

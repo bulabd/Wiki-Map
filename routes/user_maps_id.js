@@ -24,12 +24,9 @@ module.exports = (db) => {
             db.query(query3)
               .then(data3 => {
                 templateVars.favouriteMaps = data3.rows;
-                // console.log(templateVars.favouriteMaps);
-                // console.log(templateVars.maps);
                 db.query(query4)
                   .then(data4 => {
                     templateVars.favMaps = data4.rows;
-                    // console.log(templateVars.favMaps);
                     res.render("mapList", templateVars);
                   });
               });
