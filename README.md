@@ -8,17 +8,26 @@ LHL Node Skeleton
 
 ## Final Product
 
-This is a demo of the app in a mobile display
+This is a view of the map!
 
-!["Page Layout mobile"](https://github.com/Baila3/tweeter/blob/master/docs/mobile.gif)
+!["View of The Map"](https://github.com/bulabd/Wiki-Map/blob/master/docs/Screen%20Shot%202022-05-12%20at%202.49.31%20PM.png?raw=true)
 
-This shows a desktop view of the tweeter app!
+This shows a list of all maps!
 
-!["Page Layout Desktop"](https://github.com/Baila3/tweeter/blob/master/docs/desktop-view.png)
+!["List of All Maps"](https://github.com/bulabd/Wiki-Map/blob/master/docs/Screen%20Shot%202022-05-12%20at%202.51.26%20PM.png?raw=true)
 
-This is a tablet sized display of the tweeter app!
+This is the 'Profile' page!
 
-!["Page Layout Tablet"](https://github.com/Baila3/tweeter/blob/master/docs/tablet-view.png)
+!["Profile Page"](https://github.com/bulabd/Wiki-Map/blob/master/docs/Screen%20Shot%202022-05-12%20at%202.52.19%20PM.png?raw=true)
+
+This is the 'Create a Map' page!
+
+!["Create a Map Page"](https://github.com/bulabd/Wiki-Map/blob/master/docs/Screen%20Shot%202022-05-12%20at%202.53.15%20PM.png?raw=true)
+
+This is the 'Edit' page!
+
+!["Edit Page"](https://github.com/bulabd/Wiki-Map/blob/master/docs/Screen%20Shot%202022-05-12%20at%202.54.48%20PM.png?raw=true)
+
 
 ## Getting Started
 
