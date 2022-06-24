@@ -1,4 +1,4 @@
-LHL Node Skeleton
+Welcome to WikiMaps!
 =========
 ## Description
   

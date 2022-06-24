@@ -21,10 +21,10 @@ module.exports = (db) => {
         templateVars.map.description = data.rows[0].description;
         let query2 = `SELECT * FROM markers WHERE map_id = ${req.params.id}`;
         db.query(query2)
-        .then(data2 => {
-          templateVars.markers = JSON.stringify(data2.rows);
-          res.render("editMap", templateVars);
-        })
+          .then(data2 => {
+            templateVars.markers = JSON.stringify(data2.rows);
+            res.render("editMap", templateVars);
+          });
       });
   });
 
@@ -104,4 +104,4 @@ module.exports = (db) => {
   });
 
   return router;
-}
+};
